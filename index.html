@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B&B - Home</title>
+    
+    <!-- External CSS & Scripts -->
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Tailwind Font Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         :root {
             --brand-bg: #eddbb4;
@@ -43,70 +59,68 @@
     <!-- Custom Cursor -->
     <div id="custom-cursor" class="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[var(--brand-green)] rounded-full pointer-events-none z-[9999] mix-blend-multiply"></div>
 
-    <!-- SIGNATURE LEFT NAVBAR -->
-    <!-- MOBILE TOP NAVIGATION (Visible on mobile, hidden on md screens) -->
-<!-- MOBILE TOP NAVIGATION -->
-<header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[var(--brand-bg)] border-b border-custom px-4 py-3 flex justify-between items-center">
-    <!-- Mobile Logo -->
-    <a href="index.html" class="w-16 flex-shrink-0">
-        <img src="images/logo.png" alt="B&B Logo" class="w-full">
-    </a>
-
-    <!-- Mobile Nav Links + Cart -->
-    <div class="flex items-center gap-3 text-[11px] font-display uppercase tracking-wider font-bold text-[var(--brand-dark)]">
-        <a href="index.html" class="hover:text-[var(--brand-green)] transition-colors">Café</a>
-        <a href="store.html" class="hover:text-[var(--brand-green)] transition-colors">Store</a>
-        <a href="story.html" class="hover:text-[var(--brand-green)] transition-colors">Story</a>
-        
-        <!-- Mobile Basket Trigger -->
-        <button onclick="toggleCart()" class="relative flex items-center p-1 ml-1">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
-                <path d="M3 8h18l-2 13H5L3 8z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>
-            </svg>
-            <span id="mobile-cart-badge" class="hidden absolute -top-1 -right-1 bg-[var(--brand-green)] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">0</span>
-        </button>
-    </div>
-</header>
-
-<!-- DESKTOP SIDE NAVIGATION (Hidden on mobile, visible on md screens) -->
-<nav class="hidden md:flex fixed top-0 left-0 h-screen w-44 py-12 z-50 bg-[var(--brand-bg)] border-r border-custom flex-col justify-between items-center text-center px-4">
-    <!-- Logo -->
-    <div class="magnetic-target w-28">
-        <a href="index.html"><img src="images/logo.png" class="w-full" alt="B&B Logo"></a>
-    </div>
-
-    <!-- Links -->
-    <div class="flex flex-col gap-8 w-full items-center">
-        <a href="index.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
-            <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">the</span>
-            <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Café</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Explore</span></span></span>
+    <!-- MOBILE TOP NAVIGATION -->
+    <header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[var(--brand-bg)] border-b border-custom px-4 py-3 flex justify-between items-center">
+        <!-- Mobile Logo -->
+        <a href="index.html" class="w-16 flex-shrink-0">
+            <img src="images/logo.png" alt="B&B Logo" class="w-full">
         </a>
 
-        <a href="store.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
-            <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">visit</span>
-            <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Our Store</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Shop</span></span></span>
-        </a>
-
-        <a href="story.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
-            <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">our</span>
-            <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Story</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">About</span></span></span>
-        </a>
-
-        <!-- Basket Trigger Desktop -->
-        <button onclick="toggleCart()" class="magnetic-target relative flex flex-col items-center text-[var(--brand-dark)] mt-2">
-            <div class="relative">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
+        <!-- Mobile Nav Links + Cart -->
+        <div class="flex items-center gap-3 text-[11px] font-display uppercase tracking-wider font-bold text-[var(--brand-dark)]">
+            <a href="index.html" class="hover:text-[var(--brand-green)] transition-colors">Café</a>
+            <a href="store.html" class="hover:text-[var(--brand-green)] transition-colors">Store</a>
+            <a href="story.html" class="hover:text-[var(--brand-green)] transition-colors">Story</a>
+            
+            <!-- Mobile Basket Trigger -->
+            <button onclick="toggleCart()" class="relative flex items-center p-1 ml-1" aria-label="Cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
                     <path d="M3 8h18l-2 13H5L3 8z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>
                 </svg>
-                <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-[var(--brand-green)] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">0</span>
-            </div>
-            <span class="text-[10px] mt-1 font-body uppercase tracking-wider">Basket</span>
-        </button>
-    </div>
+                <span id="mobile-cart-badge" class="hidden absolute -top-1 -right-1 bg-[var(--brand-green)] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">0</span>
+            </button>
+        </div>
+    </header>
 
-    <!-- Footer Copyright -->
-    <div class="text-[10px] font-display opacity-40 text-[var(--brand-dark)]">© 2026 // B&B</div>
-</nav>
+    <!-- DESKTOP SIDE NAVIGATION -->
+    <nav class="hidden md:flex fixed top-0 left-0 h-screen w-44 py-12 z-50 bg-[var(--brand-bg)] border-r border-custom flex-col justify-between items-center text-center px-4">
+        <!-- Logo -->
+        <div class="magnetic-target w-28">
+            <a href="index.html"><img src="images/logo.png" class="w-full" alt="B&B Logo"></a>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col gap-8 w-full items-center">
+            <a href="index.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
+                <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">the</span>
+                <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Café</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Explore</span></span></span>
+            </a>
+
+            <a href="store.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
+                <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">visit</span>
+                <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Our Store</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Shop</span></span></span>
+            </a>
+
+            <a href="story.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
+                <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">our</span>
+                <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Story</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">About</span></span></span>
+            </a>
+
+            <!-- Basket Trigger Desktop -->
+            <button onclick="toggleCart()" class="magnetic-target relative flex flex-col items-center text-[var(--brand-dark)] mt-2">
+                <div class="relative">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
+                        <path d="M3 8h18l-2 13H5L3 8z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>
+                    </svg>
+                    <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-[var(--brand-green)] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">0</span>
+                </div>
+                <span class="text-[10px] mt-1 font-body uppercase tracking-wider">Basket</span>
+            </button>
+        </div>
+
+        <!-- Footer Copyright -->
+        <div class="text-[10px] font-display opacity-40 text-[var(--brand-dark)]">© 2026 // B&B</div>
+    </nav>
 
     <!-- MAIN EDITORIAL CONTENT -->
     <main class="w-full px-6 pt-24 py-8 md:pl-64 md:pr-20 md:py-16 md:ml-10 text-[var(--brand-dark)]">
@@ -141,7 +155,7 @@
                 </div>
             </div>
 
-            <!-- Right Illustration Frame (Using coffee1.png) -->
+            <!-- Right Illustration Frame -->
             <div class="w-full lg:w-7/12 h-[550px] relative rounded-[28px] overflow-hidden bg-[#eddbb4] border border-[#b79c76]/50 flex items-center justify-center p-4 mt-10 lg:mt-0 shadow-sm">
                 <img src="images/coffee1.png" alt="Brew & Beyond Café Illustration" class="w-full h-full object-contain">
             </div>
@@ -269,7 +283,7 @@
                     </div>
                 </div>
 
-                <!-- Merch Item 3: Grounded Tee (With Mockup Video) -->
+                <!-- Merch Item 3: Grounded Tee -->
                 <div class="hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="h-72 mb-6 flex items-center justify-center p-2 overflow-hidden mix-blend-multiply">
@@ -378,23 +392,22 @@
     <script>
         const cursor = document.getElementById('custom-cursor');
 
-        // Smooth Cursor Movement
+        // Smooth Cursor Movement via GSAP quickTo
+        const xTo = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power2.out" });
+        const yTo = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power2.out" });
+
         window.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { 
-                x: e.clientX, 
-                y: e.clientY, 
-                duration: 0, 
-                ease: "power2.out" 
-            });
+            xTo(e.clientX);
+            yTo(e.clientY);
         });
 
         // Magnetic Hover Effect
         document.querySelectorAll('.magnetic-target, a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(cursor, { width: 36, height: 36, backgroundColor: '#5d320e', opacity: 0.4 });
+                gsap.to(cursor, { width: 36, height: 36, backgroundColor: '#5d320e', opacity: 0.4, duration: 0.2 });
             });
             el.addEventListener('mouseleave', () => {
-                gsap.to(cursor, { width: 12, height: 12, backgroundColor: '#587a33', opacity: 1 });
+                gsap.to(cursor, { width: 12, height: 12, backgroundColor: '#587a33', opacity: 1, duration: 0.2 });
             });
         });
     </script>
