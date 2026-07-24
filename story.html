@@ -65,6 +65,30 @@
 </header>
 
 <!-- DESKTOP SIDE NAVIGATION (Hidden on mobile, visible on md screens) -->
+<!-- MOBILE TOP NAVIGATION (Visible on mobile, hidden on desktop) -->
+<header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[var(--brand-bg)] border-b border-custom px-4 py-3 flex justify-between items-center">
+    <!-- Mobile Logo -->
+    <a href="index.html" class="w-16 flex-shrink-0">
+        <img src="images/logo.png" alt="B&B Logo" class="w-full">
+    </a>
+
+    <!-- Mobile Nav Links + Cart -->
+    <div class="flex items-center gap-3 text-[11px] font-display uppercase tracking-wider font-bold text-[var(--brand-dark)]">
+        <a href="index.html" class="hover:text-[var(--brand-green)] transition-colors">Café</a>
+        <a href="store.html" class="hover:text-[var(--brand-green)] transition-colors">Store</a>
+        <a href="story.html" class="hover:text-[var(--brand-green)] transition-colors">Story</a>
+        
+        <!-- Mobile Basket Trigger -->
+        <button onclick="toggleCart()" class="relative flex items-center p-1 ml-1">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
+                <path d="M3 8h18l-2 13H5L3 8z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>
+            </svg>
+            <span id="mobile-cart-badge" class="hidden absolute -top-1 -right-1 bg-[var(--brand-green)] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">0</span>
+        </button>
+    </div>
+</header>
+
+<!-- DESKTOP SIDE NAVIGATION (Hidden on mobile, visible on desktop) -->
 <nav class="hidden md:flex fixed top-0 left-0 h-screen w-44 py-12 z-50 bg-[var(--brand-bg)] border-r border-custom flex-col justify-between items-center text-center px-4">
     <!-- Logo -->
     <div class="magnetic-target w-28">
@@ -73,16 +97,19 @@
 
     <!-- Links -->
     <div class="flex flex-col gap-8 w-full items-center">
+        <!-- Café Link -->
         <a href="index.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
             <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">the</span>
             <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Café</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Explore</span></span></span>
         </a>
 
+        <!-- Store Link -->
         <a href="store.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
             <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">visit</span>
             <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Our Store</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">Shop</span></span></span>
         </a>
 
+        <!-- Story Link -->
         <a href="story.html" class="nav-interactive-item magnetic-target block text-sm uppercase font-display text-[var(--brand-dark)]">
             <span class="opacity-50 text-[11px] block lowercase italic font-body mb-1">our</span>
             <span class="roll-wrapper"><span class="roll-inner"><span class="block h-7 nav-bold-target">Story</span><span class="block h-7 text-[var(--brand-green)] nav-bold-target">About</span></span></span>
