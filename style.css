@@ -3,25 +3,41 @@
     --brand-dark: #5d320e; 
     --brand-green: #587a33;
     --border-color: #b79c76;
+    --brand-cream: #fdfbf7;
 }
 
 /* Font Face Definitions */
-@font-face { font-family: 'BlackMango'; src: url('fonts/black-mango.woff') format('woff'); }
-@font-face { font-family: 'CatchyMager'; src: url('fonts/catchy-mager.woff') format('woff'); }
+@font-face { 
+    font-family: 'BlackMango'; 
+    src: url('fonts/black-mango.woff') format('woff'); 
+    font-display: swap;
+}
 
+@font-face { 
+    font-family: 'CatchyMager'; 
+    src: url('fonts/catchy-mager.woff') format('woff'); 
+    font-display: swap;
+}
+
+/* Base Styles */
 body { 
     background-color: var(--brand-bg); 
     color: var(--brand-dark); 
-    /* We use cursor: none here, so the custom JS cursor is mandatory */
-    cursor: none; 
     margin: 0; 
     padding: 0; 
     overflow-x: hidden; 
 }
 
-/* Typography */
+/* Hide native cursors ONLY on devices with a mouse/pointer */
+@media (pointer: fine) {
+    body, button, a, .cursor-pointer, input, select { 
+        cursor: none !important; 
+    }
+}
+
+/* Typography Utility Classes */
 .font-display { font-family: 'BlackMango', serif; }
-.font-body { font-family: 'CatchyMager', serif; }
+.font-body { font-family: 'CatchyMager', sans-serif; }
 
 /* Global Border Utility */
 .border-custom { border: 1px solid var(--border-color); }
@@ -37,26 +53,56 @@ body {
     border-radius: 50%; 
     pointer-events: none; /* Crucial for click-through */
     z-index: 99999;       /* Ensure it's always on top */
-    transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
+    transform: translate(-50%, -50%); /* Center-aligns the cursor relative to mouse position */
+    transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out, opacity 0.2s ease-out;
     user-select: none;
     will-change: transform;
 }
 
+/* Hide custom cursor on touch devices where hover/mouse doesn't exist */
+@media (pointer: coarse) {
+    #custom-cursor {
+        display: none !important;
+    }
+}
+
 /* Navigation & Rolling Text Effect */
-.roll-wrapper { display: block; position: relative; overflow: hidden; height: 1.6rem; }
-.roll-inner { display: block; transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1); }
-.nav-interactive-item:hover .roll-inner { transform: translateY(-50%); }
-.nav-bold-target { font-weight: 600 !important; letter-spacing: 0.15em; }
+.roll-wrapper { 
+    display: block; 
+    position: relative; 
+    overflow: hidden; 
+    height: 1.75rem; /* Matches h-7 (28px) in HTML */
+    line-height: 1.75rem;
+}
+
+.roll-inner { 
+    display: block; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.nav-interactive-item:hover .roll-inner { 
+    transform: translateY(-1.75rem); 
+}
+
+.nav-bold-target { 
+    font-weight: 600 !important; 
+    letter-spacing: 0.15em; 
+}
 
 /* Scrollbar styling for Cart Drawer */
-#cart-items::-webkit-scrollbar { width: 4px; }
-#cart-items::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; }
+#cart-items::-webkit-scrollbar { 
+    width: 4px; 
+}
 
-/* Utility Classes */
+#cart-items::-webkit-scrollbar-thumb { 
+    background-color: var(--border-color); 
+    border-radius: 10px; 
+}
+
+/* Brand Utility Helpers */
+.bg-brand-bg { background-color: var(--brand-bg); }
 .bg-brand-dark { background-color: var(--brand-dark); }
+.bg-brand-green { background-color: var(--brand-green); }
+.text-brand-dark { color: var(--brand-dark); }
 .text-brand-green { color: var(--brand-green); }
 .border-brand-custom { border-color: var(--border-color); }
-
-/* Ensure elements that trigger cursor hover effect have no default cursor */
-button, a, .cursor-pointer { cursor: none !important; }
-
