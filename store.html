@@ -407,38 +407,52 @@
         }
 
         function renderCart() {
-            const container = document.getElementById('cart-items');
-            const badge = document.getElementById('cart-badge');
-            
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            if (totalQty > 0) {
-                badge.innerText = totalQty;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
-
-            if (cart.length === 0) {
-                container.innerHTML = `<p class="font-body opacity-50 text-sm">Your basket is currently empty.</p>`;
-            } else {
-                container.innerHTML = cart.map(item => `
-                    <div class="flex justify-between items-center cart-item-font border-b border-[#5d320e]/10 pb-4">
-                        <div>
-                            <h4 class="font-display font-bold text-[#5d320e]">${item.name}</h4>
-                            <p class="text-xs opacity-70 text-[#5d320e]">₹${item.price} × ${item.qty}</p>
-                        </div>
-                        <div class="flex items-center gap-3 border border-[#5d320e] px-2 py-1 rounded">
-                            <button class="magnetic-target px-1 font-bold" onclick="changeQty('${item.cartKey}', -1)">-</button>
-                            <span class="text-xs font-bold">${item.qty}</span>
-                            <button class="magnetic-target px-1 font-bold" onclick="changeQty('${item.cartKey}', 1)">+</button>
-                        </div>
-                    </div>`).join('');
-            }
-
-            document.getElementById('cart-total').innerText = `₹${cart.reduce((s, i) => s + (i.price * i.qty), 0)}`;
-            attachCursorListeners();
+    const container = document.getElementById('cart-items');
+    const badge = document.getElementById('cart-badge');
+    const mobileBadge = document.getElementById('mobile-cart-badge');
+    
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    
+    // Update Desktop Badge
+    if (badge) {
+        if (totalQty > 0) {
+            badge.innerText = totalQty;
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
         }
+    }
 
+    // Update Mobile Badge
+    if (mobileBadge) {
+        if (totalQty > 0) {
+            mobileBadge.innerText = totalQty;
+            mobileBadge.classList.remove('hidden');
+        } else {
+            mobileBadge.classList.add('hidden');
+        }
+    }
+
+    if (cart.length === 0) {
+        container.innerHTML = `<p class="font-body opacity-50 text-sm">Your basket is currently empty.</p>`;
+    } else {
+        container.innerHTML = cart.map(item => `
+            <div class="flex justify-between items-center cart-item-font border-b border-[#5d320e]/10 pb-4">
+                <div>
+                    <h4 class="font-display font-bold text-[#5d320e]">${item.name}</h4>
+                    <p class="text-xs opacity-70 text-[#5d320e]">₹${item.price} × ${item.qty}</p>
+                </div>
+                <div class="flex items-center gap-3 border border-[#5d320e] px-2 py-1 rounded">
+                    <button class="magnetic-target px-1 font-bold" onclick="changeQty('${item.cartKey}', -1)">-</button>
+                    <span class="text-xs font-bold">${item.qty}</span>
+                    <button class="magnetic-target px-1 font-bold" onclick="changeQty('${item.cartKey}', 1)">+</button>
+                </div>
+            </div>`).join('');
+    }
+
+    document.getElementById('cart-total').innerText = `₹${cart.reduce((s, i) => s + (i.price * i.qty), 0)}`;
+    attachCursorListeners();
+}
         // --- 8. MODAL & IMAGE TOGGLES ---
         function openDesc(productId) {
             const product = products.find(p => p.id === productId);
