@@ -45,19 +45,21 @@
 
     <!-- SIGNATURE LEFT NAVBAR -->
     <!-- MOBILE TOP NAVIGATION (Visible on mobile, hidden on md screens) -->
-<header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[var(--brand-bg)] border-b border-custom px-6 py-4 flex justify-between items-center">
+<!-- MOBILE TOP NAVIGATION -->
+<header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[var(--brand-bg)] border-b border-custom px-4 py-3 flex justify-between items-center">
     <!-- Mobile Logo -->
-    <a href="index.html" class="w-20">
+    <a href="index.html" class="w-16 flex-shrink-0">
         <img src="images/logo.png" alt="B&B Logo" class="w-full">
     </a>
 
-    <!-- Mobile Nav & Basket Links -->
-    <div class="flex items-center gap-4 text-xs font-display uppercase tracking-widest font-bold text-[var(--brand-dark)]">
-        <a href="store.html" class="hover:text-[var(--brand-green)]">Store</a>
-        <a href="story.html" class="hover:text-[var(--brand-green)]">Story</a>
+    <!-- Mobile Nav Links + Cart -->
+    <div class="flex items-center gap-3 text-[11px] font-display uppercase tracking-wider font-bold text-[var(--brand-dark)]">
+        <a href="index.html" class="hover:text-[var(--brand-green)] transition-colors">Café</a>
+        <a href="store.html" class="hover:text-[var(--brand-green)] transition-colors">Store</a>
+        <a href="story.html" class="hover:text-[var(--brand-green)] transition-colors">Story</a>
         
-        <!-- Mobile Basket Button -->
-        <button onclick="toggleCart()" class="relative flex items-center p-1">
+        <!-- Mobile Basket Trigger -->
+        <button onclick="toggleCart()" class="relative flex items-center p-1 ml-1">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5d320e" stroke-width="2">
                 <path d="M3 8h18l-2 13H5L3 8z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>
             </svg>
